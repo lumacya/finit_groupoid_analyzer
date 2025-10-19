@@ -27,6 +27,23 @@
 ```python
 import os
 import subprocess
+import sys
 
-# Установите PyInstaller, если нужно: pip install pyinstaller
-subprocess.run(["pyinstaller", "--onefile", "analyzer/main.py", "--name", "GroupoidAnalyzer"])
+# Этот скрипт компилирует main.py в standalone .exe с помощью PyInstaller.
+# Установите PyInstaller заранее: pip install pyinstaller
+# Запустите: python build.py
+
+# Проверка наличия точки входа
+if not os.path.exists("analyzer/main.py"):
+    print("Ошибка: Запустите скрипт из корневой директории проекта, где находится папка 'analyzer'.")
+    sys.exit(1)
+
+# Выполнение команды PyInstaller
+subprocess.run([
+    "pyinstaller",
+    "--onefile",                # Создать один .exe файл
+    "--name", "GroupoidAnalyzer",  # Имя выходного .exe файла
+    "analyzer/main.py"          # Путь к точке входа
+])
+
+print("Компиляция завершена. Файл .exe находится в папке 'dist'.")
