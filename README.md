@@ -1,2 +1,32 @@
-# finit_groupoid_analyzer
-This is a Python program for analyzing binary operations on finite sets (groupoids). The user enters the set size (up to 10 elements) and the Cayley table, and the program checks the properties of the operation and classifies it as a semigroup, group, etc.
+# Анализатор конечных группоидов
+
+## Описание
+Это программа на Python для анализа бинарных операций на конечных множествах (группоидах). Пользователь вводит размер множества (до 10 элементов) и таблицу Кэли, а программа проверяет свойства операции и классифицирует её как полугруппу, группу и т.д.
+
+Программа соответствует PEP8, состоит из модулей, имеет комментарии и может быть скомпилирована в standalone .exe.
+
+## Требования
+- Python 3.8+ (для разработки).
+- Нет внешних зависимостей (только стандартная библиотека).
+
+## Установка и запуск (исходный код)
+1. Клонируйте репозиторий.
+2. Перейдите в директорию `finite_groupoid_analyzer`.
+3. Запустите: `python -m analyzer.main` (или `python analyzer/main.py`).
+
+## Ввод данных
+- Мощность множества: целое число от 1 до 10.
+- Таблица Кэли: n строк, каждая с n целыми числами (0 до n-1), разделенными пробелами. table[i][j] = результат i * j.
+
+## Вывод
+- Свойства: замкнутая, ассоциативная, коммутативная, имеет нейтральный (с указанием), разрешимая, обратимая.
+- Классификация: список применимых структур (полугруппа, квазигруппа, моноид, лупа, группа, абелева группа).
+
+## Компиляция в .exe
+Используйте отдельный скрипт `build.py` (не в репозитории для чистоты):
+```python
+import os
+import subprocess
+
+# Установите PyInstaller, если нужно: pip install pyinstaller
+subprocess.run(["pyinstaller", "--onefile", "analyzer/main.py", "--name", "GroupoidAnalyzer"])
